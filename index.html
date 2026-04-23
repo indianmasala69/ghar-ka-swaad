@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>Ghar Ka Swaad — Maa's kitchen, from Rajasthan and Bhopal to Bhubaneswar</title>
+  <title>Ghar Ka Swaad — Sonali's kitchen, from Rajasthan and Bhopal to Bhubaneswar</title>
   <meta name="description" content="A small, premium home brand of hand-made besan ladoos, mathri, aam ka achar and farsan. Rajasthani and Bhopali recipes, four decades in one kitchen."/>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
@@ -106,10 +106,14 @@ const SHEET_ID = '1oEWyU98YUM7gwYEK7SOTVtEuWzEFwl2jKF317DuoaWM';
 // 3. Your Apps Script web app URL (deploy the script and paste URL here)
 const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyZ17NBoTr7VCWnaA6jNbQj_SaUqJKZeW1E3I75lQu-LsiDpA9RAdP1y6uaBb_92RkR/exec';
 
-// ── Product images (add your own image URLs here once generated)
+// ── Product images (local; served from /images folder in the repo)
 const IMG = {
-  // "besan-ladoo-plain": "https://...",
-  // "mathri-jeera":      "https://...",
+  "besan-ladoo":      "./images/besan-ladoo.png",
+  "mathri-jeera":     "./images/mathri-jeera.png",
+  "farsan-bhopali":   "./images/farsan-bhopali.png",
+  "aam-ka-achar":     "./images/aam-ka-achar.png",
+  "lal-mirch-bharwa": "./images/lal-mirch-bharwa.png",
+  "sonali-portrait":  "./images/sonali-portrait.png",
 };
 
 // ══════════════════════════════════════════════════
@@ -118,11 +122,11 @@ const IMG = {
 const DATA = {
   shop: {
     name: 'Ghar Ka Swaad',
-    tagline: 'Maa\u2019s kitchen, in a jar.',
+    tagline: 'Sonali\u2019s kitchen, in a jar.',
     city: 'Bhubaneswar',
     radiusKm: 3,
     whatsapp: WHATSAPP,
-    cook: 'Maa',
+    cook: 'Sonali',
   },
   deliveryAreas: [
     'Tata Ariana',
@@ -141,33 +145,25 @@ const DATA = {
     'Damana',
   ],
   categories: [
-    { id: 'sweets', name: 'Sweets & Ladoos', subtitle: 'Pure desi ghee, hand-rolled, small batch.', eta: 'Pickup in 2\u20133 days', kind: 'keeper' },
-    { id: 'keepers', name: 'Crunchies & Farsan', subtitle: 'Mathri, mixture, tea-time staples. Long keepers.', eta: 'Pickup in 2\u20133 days', kind: 'keeper' },
-    { id: 'pickles', name: 'Pickles & Achar', subtitle: 'Sun-cured, kachi ghani mustard oil. Keeps a year.', eta: 'Pickup in 3\u20134 days', kind: 'keeper' },
-    { id: 'fresh',   name: 'Fresh, made to order', subtitle: 'Dosa and idli batter, ground fresh. Order a day ahead.', eta: 'Next day, before 11am', kind: 'fresh' },
+    { id: 'sweets', name: 'Sweets & Ladoos', subtitle: 'Pure desi ghee, hand-rolled, made fresh to order.', eta: 'Ready in 2\u20133 days', kind: 'keeper' },
+    { id: 'keepers', name: 'Crunchies & Farsan', subtitle: 'Mathri and mixture, the tea-time staples. Made fresh to order.', eta: 'Ready in 2\u20133 days', kind: 'keeper' },
+    { id: 'pickles', name: 'Pickles & Achar', subtitle: 'Sun-cured, kachi ghani mustard oil. Made in season, keeps a year.', eta: 'Ready in 3\u20134 days', kind: 'keeper' },
   ],
   products: [
-    { id: 'besan-ladoo-plain-250', name: 'Besan Ladoo \u00B7 Plain', subtitle: 'Pure desi ghee, slow-roasted besan', blurb: 'Besan roasted slow on a brass kadhai until the ghee separates and the kitchen smells of the thing itself. Sugar, cardamom, a handful of pistachios for the grain. Rolled by hand, the size Maa\u2019s palm remembers.', category: 'sweets', price: 220, unit: '250 g box', shelfLife: '25\u201330 days', ingredients: ['besan','desi ghee','sugar','cardamom','pistachio'], allergens: ['dairy (ghee)','tree nuts'], available: true, featured: true, artId: 'besan-ladoo-plain-250' },
-    { id: 'besan-ladoo-dryfruit-250', name: 'Besan Ladoo \u00B7 Dry Fruit', subtitle: 'With almond, cashew and raisin', blurb: 'The same slow-roasted besan, but threaded through with chopped almond, cashew and kishmish. A festival ladoo. Heavier to pick up, richer to bite.', category: 'sweets', price: 280, unit: '250 g box', shelfLife: '25\u201330 days', ingredients: ['besan','desi ghee','sugar','almond','cashew','raisin','cardamom'], allergens: ['dairy (ghee)','tree nuts'], available: true, featured: true, artId: 'besan-ladoo-dryfruit-250' },
-    { id: 'besan-ladoo-plain-500', name: 'Besan Ladoo \u00B7 Plain (large)', subtitle: '500 g \u00B7 enough for a week of tea', blurb: 'The everyday tin. For the households that eat a ladoo each afternoon with their chai. Same ghee, same hands, larger box.', category: 'sweets', price: 420, unit: '500 g box', shelfLife: '25\u201330 days', ingredients: ['besan','desi ghee','sugar','cardamom','pistachio'], allergens: ['dairy (ghee)','tree nuts'], available: true, artId: 'besan-ladoo-plain-500' },
+    { id: 'besan-ladoo', name: 'Besan Ladoo', subtitle: 'Pure desi ghee, slow-roasted besan', blurb: 'Besan roasted slow on a brass kadhai until the ghee separates and the kitchen smells of the thing itself. Sugar, cardamom, a handful of pistachios for the grain. Rolled by hand, the size Sonali\u2019s palm remembers. Every ladoo made fresh to order.', category: 'sweets', price: 220, unit: '250 g box', shelfLife: '25\u201330 days', ingredients: ['besan','desi ghee','sugar','cardamom','pistachio'], allergens: ['dairy (ghee)','tree nuts'], available: true, featured: true, artId: 'besan-ladoo' },
 
-    { id: 'mathri-jeera-200', name: 'Mathri \u00B7 Jeera', subtitle: 'Flaky, peppered, hand-rolled', blurb: 'Stiff dough, a generous hand of cumin and cracked pepper, rolled thin and pricked by fork. Fried till the edges crackle. The tea-time mathri Maa\u2019s nani taught her in Jaipur.', category: 'keepers', price: 120, unit: '200 g pouch', shelfLife: '45\u201360 days', ingredients: ['maida','ghee','cumin','black pepper','ajwain','salt'], allergens: ['dairy (ghee)','wheat'], available: true, featured: true, artId: 'mathri-jeera-200' },
-    { id: 'mathri-jeera-400', name: 'Mathri \u00B7 Jeera (large)', subtitle: '400 g tin \u00B7 keeps two months', blurb: 'The same mathri in a tin that will last a whole monsoon. Airtight, stackable, sharable.', category: 'keepers', price: 220, unit: '400 g tin', shelfLife: '45\u201360 days', ingredients: ['maida','ghee','cumin','black pepper','ajwain','salt'], allergens: ['dairy (ghee)','wheat'], available: true, artId: 'mathri-jeera-400' },
-    { id: 'farsan-bhopali-200', name: 'Bhopali Farsan', subtitle: 'Khatta\u2011meetha, nothing quite like it here', blurb: 'Sev, boondi, moong dal, a whisper of chaat masala, a sly drop of lemon. The Bhopali mixture Maa grew up on. Nothing like the supermarket kind.', category: 'keepers', price: 140, unit: '200 g pouch', shelfLife: '30\u201345 days', ingredients: ['besan','moong dal','chana dal','peanut','spices','salt','refined oil'], allergens: ['peanut','legume'], available: true, featured: true, artId: 'farsan-bhopali-200' },
+    { id: 'mathri-jeera', name: 'Mathri \u00B7 Jeera', subtitle: 'Flaky, peppered, hand-rolled', blurb: 'Stiff dough, a generous hand of cumin and cracked pepper, rolled thin and pricked by fork. Fried till the edges crackle. The tea-time mathri Sonali\u2019s nani taught her, first in Bhopal, then carried everywhere since.', category: 'keepers', price: 120, unit: '200 g pouch', shelfLife: '45\u201360 days', ingredients: ['maida','ghee','cumin','black pepper','ajwain','salt'], allergens: ['dairy (ghee)','wheat'], available: true, featured: true, artId: 'mathri-jeera' },
+    { id: 'farsan-bhopali', name: 'Bhopali Farsan', subtitle: 'Khatta\u2011meetha, nothing quite like it here', blurb: 'Sev, boondi, moong dal, a whisper of chaat masala, a sly drop of lemon. The Bhopali mixture Sonali grew up on. Nothing like the supermarket kind.', category: 'keepers', price: 140, unit: '200 g pouch', shelfLife: '30\u201345 days', ingredients: ['besan','moong dal','chana dal','peanut','spices','salt','refined oil'], allergens: ['peanut','legume'], available: true, featured: true, artId: 'farsan-bhopali' },
 
-    { id: 'aam-achar-250', name: 'Aam ka Achar', subtitle: 'Sun\u2011cured, kachi ghani mustard oil', blurb: 'Raw mangoes from the April trees, cut, salted, sunned for four days, then packed in kachi ghani mustard oil with fenugreek, fennel, kalonji and a heavy hand of red chilli. The jar keeps a year. The mangoes keep your memory.', category: 'pickles', price: 180, unit: '250 g glass jar', shelfLife: '6\u201312 months', ingredients: ['raw mango','mustard oil (kachi ghani)','salt','fenugreek','fennel','kalonji','red chilli','turmeric'], allergens: ['mustard'], available: true, featured: true, artId: 'aam-achar-250' },
-    { id: 'aam-achar-500', name: 'Aam ka Achar (large)', subtitle: '500 g jar \u00B7 keeps a full year', blurb: 'The big jar. For the household that will eat this with every paratha, every rice plate, every khichdi, till next year\u2019s mangoes arrive.', category: 'pickles', price: 320, unit: '500 g glass jar', shelfLife: '6\u201312 months', ingredients: ['raw mango','mustard oil (kachi ghani)','salt','fenugreek','fennel','kalonji','red chilli','turmeric'], allergens: ['mustard'], available: true, artId: 'aam-achar-500' },
-    { id: 'lal-mirch-bharwa-250', name: 'Lal Mirch Bharwa Achar', subtitle: 'Stuffed Rajasthani red chilli pickle', blurb: 'Fat red Rajasthani chillies, slit and stuffed with a ground masala of saunf, methi, sarson, amchoor. Packed whole in mustard oil. A showpiece jar for a winter lunch.', category: 'pickles', price: 220, unit: '250 g glass jar', shelfLife: '6\u201312 months', ingredients: ['red chilli','mustard oil','fennel','fenugreek','yellow mustard','amchoor','salt'], allergens: ['mustard'], available: true, featured: true, artId: 'lal-mirch-bharwa-250' },
-
-    { id: 'dosa-batter-1l', name: 'Dosa Batter', subtitle: 'Fresh ground, rested overnight', blurb: 'Sona masuri rice and urad dal, soaked, stone\u2011ground, rested twelve hours. Ready to pour. Makes about twelve medium dosas.', category: 'fresh', price: 90, unit: '1 litre', shelfLife: '2\u20133 days, refrigerated', ingredients: ['sona masuri rice','urad dal','methi seeds','salt'], allergens: [], available: true, artId: 'dosa-batter-1l' },
-    { id: 'idli-batter-1l', name: 'Idli Batter', subtitle: 'Fluffy, fresh, ready to steam', blurb: 'A softer grind, a longer rest. For idlis that come out tall and airy. Best used within two days.', category: 'fresh', price: 100, unit: '1 litre', shelfLife: '2\u20133 days, refrigerated', ingredients: ['idli rice','urad dal','methi seeds','salt'], allergens: [], available: true, artId: 'idli-batter-1l' },
+    { id: 'aam-ka-achar', name: 'Aam ka Achar', subtitle: 'Sun\u2011cured, kachi ghani mustard oil', blurb: 'Raw mangoes from the April trees, cut, salted, sunned for four days, then packed in kachi ghani mustard oil with fenugreek, fennel, kalonji and a heavy hand of red chilli. The jar keeps a year. The mangoes keep your memory.', category: 'pickles', price: 180, unit: '250 g glass jar', shelfLife: '6\u201312 months', ingredients: ['raw mango','mustard oil (kachi ghani)','salt','fenugreek','fennel','kalonji','red chilli','turmeric'], allergens: ['mustard'], available: true, featured: true, artId: 'aam-ka-achar' },
+    { id: 'lal-mirch-bharwa', name: 'Lal Mirch Bharwa Achar', subtitle: 'Stuffed Rajasthani red chilli pickle', blurb: 'Fat red Rajasthani chillies, slit and stuffed with a ground masala of saunf, methi, sarson, amchoor. Packed whole in mustard oil. A showpiece jar for a winter lunch.', category: 'pickles', price: 220, unit: '250 g glass jar', shelfLife: '6\u201312 months', ingredients: ['red chilli','mustard oil','fennel','fenugreek','yellow mustard','amchoor','salt'], allergens: ['mustard'], available: true, featured: true, artId: 'lal-mirch-bharwa' },
   ],
   faqs: [
-    { q: 'Where do you deliver?', a: 'Bhubaneswar only. Free pickup from our kitchen in Tata Ariana area. For Vipul Gardens, Patia and nearby societies we offer a local delivery slot twice a week (Tuesday and Friday evenings). Outside that, a small delivery charge applies.' },
-    { q: 'How do I pay?', a: 'Payment is confirmed on WhatsApp before we prepare your order. We accept UPI, bank transfer or cash on pickup. Nothing is auto\u2011charged here.' },
-    { q: 'When should I order?', a: 'Ladoos, mathri, farsan and pickles: order any time, we make a fresh batch every 3\u20134 days. Dosa or idli batter: place before 8pm for next\u2011day pickup, before 11am.' },
+    { q: 'Where do you deliver?', a: 'Bhubaneswar only. Free pickup from our kitchen in the Tata Ariana area. For Vipul Gardens, Patia and nearby societies we offer a local delivery slot twice a week (Tuesday and Friday evenings). Outside that, a small delivery charge applies.' },
+    { q: 'How do I pay?', a: 'Payment is confirmed on WhatsApp before we start your order. We accept UPI, bank transfer or cash on pickup. Nothing is auto\u2011charged here.' },
+    { q: 'When should I order?', a: 'Everything is made fresh to order, not pre-stocked. Ladoos, mathri and farsan are ready in 2\u20133 days. Pickles take 3\u20134 days. Order any day \u2014 Sonali will confirm your pickup slot on WhatsApp.' },
     { q: 'What oil and ghee do you use?', a: 'Pure desi ghee for the sweets and mathri. Kachi ghani (cold\u2011pressed) mustard oil for all pickles. Refined oil only where the recipe asks for it (farsan). No palm oil, ever.' },
-    { q: 'Are there preservatives?', a: 'None. Shelf life comes from the old ways \u2014 salt, oil, sun, sugar, ghee. If something needs refrigeration, the label will say so.' },
+    { q: 'Are there preservatives?', a: 'None. Shelf life comes from the old ways \u2014 salt, oil, sun, sugar, ghee. Every item carries a clear made-on and best-by date.' },
     { q: 'Can I order a custom quantity or gift box?', a: 'Yes \u2014 gift boxes for Diwali, Rakhi, Holi, housewarmings and weddings are one of our favourite things to make. Message us on WhatsApp and we will build one for you.' },
     { q: 'Do you ship outside Bhubaneswar?', a: 'Not yet. We want every jar to arrive the way it left the kitchen. One city at a time.' },
     { q: 'Do you have an FSSAI licence?', a: 'Yes \u2014 FSSAI Basic Registration. Number printed on every label. Kitchen is inspected, records are kept.' },
@@ -350,7 +346,7 @@ function HomeScreen({ go, cart, addToCart, updateQty, stock, shopStatus, product
         </div>
         <div style={{ fontFamily:'var(--font-display)', fontWeight:500, fontSize:56, lineHeight:0.9, color:'var(--ink)', letterSpacing:'-0.03em', marginBottom:6 }}>Ghar ka Swaad</div>
         <div style={{ fontFamily:'var(--font-serif)', fontStyle:'italic', fontSize:17, lineHeight:1.35, color:'var(--ink-soft)', maxWidth:320 }}>
-          Rajasthan, Bhopal, Bhubaneswar.<br/>Four decades of Maa&rsquo;s kitchen, in a jar.
+          Rajasthan, Bhopal, Bhubaneswar.<br/>Four decades of Sonali&rsquo;s kitchen, made fresh to order.
         </div>
         {shopStatus?.festive && (
           <div style={{ marginTop:14, display:'inline-block', padding:'6px 14px', border:'1px solid var(--accent-red)', fontFamily:'var(--font-hand)', fontSize:20, color:'var(--accent-red)', transform:'rotate(-1deg)' }}>
@@ -363,7 +359,7 @@ function HomeScreen({ go, cart, addToCart, updateQty, stock, shopStatus, product
         <div style={{ border:'1px solid var(--ink)', background:'var(--paper-deep)', padding:'18px 18px 20px', position:'relative', boxShadow:'inset 0 1px 4px rgba(42,28,16,0.07)' }}>
           <div style={{ position:'absolute', top:-10, left:18, background:'var(--paper)', padding:'0 8px', fontFamily:'var(--font-mono)', fontSize:10, letterSpacing:'0.24em', color:'var(--ink-soft)' }}>— FROM THE KITCHEN —</div>
           <div style={{ fontFamily:'var(--font-serif)', fontSize:15.5, lineHeight:1.55, color:'var(--ink)', fontStyle:'italic' }}>
-            Everything here is made by one person, in small batches, in pure desi ghee and kachi ghani mustard oil. The recipes came with Maa from Jaipur and Bhopal. If a jar isn&rsquo;t right, she wants to know.
+            I cook the way I was taught &mdash; slow, by hand, in pure desi ghee and kachi ghani mustard oil. Nothing is pre-made, nothing is stored. Your jar is started the day you order it. If it is not right, please tell me.
           </div>
           <div style={{ marginTop:14, fontFamily:'var(--font-hand)', fontSize:26, lineHeight:1, color:'var(--accent-red)', transform:'rotate(-5deg)', transformOrigin:'left center', display:'inline-block', paddingBottom:6, paddingLeft:4 }}>— {DATA.shop.cook}</div>
         </div>
@@ -371,7 +367,7 @@ function HomeScreen({ go, cart, addToCart, updateQty, stock, shopStatus, product
 
       {shopStatus && !shopStatus.open && <ClosedBanner message={shopStatus.message}/>}
 
-      <SectionHead eyebrow="On the shelf today" title="What Maa is making this week."/>
+      <SectionHead eyebrow="On the shelf today" title="What Sonali is making this week."/>
       <div style={{ padding:'0 var(--px)', display:'grid', gridTemplateColumns:'repeat(auto-fill, minmax(200px, 1fr))', gap:14, overflow:'hidden' }}>
         {featured.map(p => {
           const inCart = cart?.[p.id] || 0;
@@ -440,10 +436,10 @@ function CatalogueScreen({ go, cart, addToCart, updateQty, products, stock, shop
     <div style={{ paddingBottom:120 }}>
       <div style={{ padding:'28px var(--px) 12px' }}>
         <div style={{ fontFamily:'var(--font-mono)', fontSize:10, letterSpacing:'0.24em', color:'var(--ink-soft)', textTransform:'uppercase' }}>The Shelf</div>
-        <div style={{ fontFamily:'var(--font-display)', fontSize:44, lineHeight:0.95, color:'var(--ink)', fontWeight:500, marginTop:6, letterSpacing:'-0.02em' }}>Everything<br/>Maa makes.</div>
+        <div style={{ fontFamily:'var(--font-display)', fontSize:44, lineHeight:0.95, color:'var(--ink)', fontWeight:500, marginTop:6, letterSpacing:'-0.02em' }}>Everything<br/>Sonali makes.</div>
       </div>
       <div style={{ padding:'16px var(--px) 4px', display:'flex', gap:6, flexWrap:'wrap' }}>
-        {[{id:'all',label:'All'},{id:'sweets',label:'Sweets'},{id:'keepers',label:'Crunchies'},{id:'pickles',label:'Pickles'},{id:'fresh',label:'Fresh'}].map(f=>(
+        {[{id:'all',label:'All'},{id:'sweets',label:'Sweets'},{id:'keepers',label:'Crunchies'},{id:'pickles',label:'Pickles'}].map(f=>(
           <button key={f.id} onClick={()=>setFilter(f.id)} style={{ padding:'7px 14px', border:`1px solid ${filter===f.id?'var(--ink)':'var(--ink-faint)'}`, background:filter===f.id?'var(--ink)':'transparent', color:filter===f.id?'var(--paper)':'var(--ink)', fontFamily:'var(--font-mono)', fontSize:11, letterSpacing:'0.1em', textTransform:'uppercase', cursor:'pointer', flexShrink:0, borderRadius:0, fontWeight:600 }}>{f.label}</button>
         ))}
       </div>
@@ -682,7 +678,7 @@ function CartScreen({ go, cart, updateQty, removeItem, shopStatus, stock, produc
             <div style={{ background:'var(--paper-deep)', border:'1px solid var(--accent-olive)', padding:'14px 16px' }}>
               <div style={{ fontFamily:'var(--font-mono)', fontSize:10, letterSpacing:'0.2em', color:'var(--accent-olive)', textTransform:'uppercase', marginBottom:6 }}>How this works</div>
               <div style={{ fontFamily:'var(--font-serif)', fontSize:14, color:'var(--ink)', lineHeight:1.55 }}>
-                Tap below to send your basket to Maa on WhatsApp. She confirms the pickup slot and payment details personally. <strong>Your batch is started only after payment is confirmed.</strong>
+                Tap below to send your basket to Sonali on WhatsApp. She confirms the pickup slot and payment details personally. <strong>Your batch is started only after payment is confirmed.</strong>
               </div>
             </div>
           </div>
@@ -799,7 +795,7 @@ function HandoffScreen({ go, cart, clearCart, products }) {
       <div style={{ marginTop:16, padding:'14px 16px', border:'1px solid var(--ink)', background:'var(--paper-deep)', textAlign:'left' }}>
         <div style={{ fontFamily:'var(--font-mono)', fontSize:9, letterSpacing:'0.22em', color:'var(--accent-red)', textTransform:'uppercase', marginBottom:6 }}>⚠ Action needed</div>
         <div style={{ fontFamily:'var(--font-serif)', fontSize:13.5, color:'var(--ink)', lineHeight:1.6 }}>
-          <strong>Your order is confirmed only after Maa replies on WhatsApp.</strong> If you closed WhatsApp without sending, please go back and try again.
+          <strong>Your order is confirmed only after Sonali replies on WhatsApp.</strong> If you closed WhatsApp without sending, please go back and try again.
         </div>
       </div>
 
@@ -832,7 +828,7 @@ function HandoffScreen({ go, cart, clearCart, products }) {
         <div style={{ fontFamily:'var(--font-mono)', fontSize:10, letterSpacing:'0.24em', color:'var(--ink-soft)', textTransform:'uppercase' }}>Last step</div>
         <div style={{ fontFamily:'var(--font-display)', fontSize:34, lineHeight:1, color:'var(--ink)', fontWeight:500, marginTop:6 }}>A few details</div>
         <div style={{ fontFamily:'var(--font-serif)', fontStyle:'italic', fontSize:14, color:'var(--ink-soft)', marginTop:8, lineHeight:1.5 }}>
-          So Maa can bring it to the right door. Nothing is saved here — it goes straight to WhatsApp.
+          So Sonali can bring it to the right door. Nothing is saved here — it goes straight to WhatsApp.
         </div>
       </div>
 
@@ -845,24 +841,24 @@ function HandoffScreen({ go, cart, clearCart, products }) {
           <select value={area} onChange={e=>setArea(e.target.value)} style={{ width:'100%', padding:'10px 12px', background:'var(--paper)', border:'1px solid var(--ink-faint)', fontFamily:'var(--font-serif)', fontSize:15, color: area ? 'var(--ink)' : 'var(--ink-faint)', borderRadius:0, outline:'none', appearance:'none', WebkitAppearance:'none', cursor:'pointer' }}>
             <option value="">Select your area</option>
             {DATA.deliveryAreas.map(a=><option key={a} value={a}>{a}</option>)}
-            <option value="Other">Other (Maa will confirm)</option>
+            <option value="Other">Other (Sonali will confirm)</option>
           </select>
           {area === 'Other' && (
             <div style={{ marginTop:6, fontFamily:'var(--font-serif)', fontSize:12, color:'var(--accent-olive)', fontStyle:'italic' }}>
-              Pickup outside our 3 km range may need a small delivery charge. Maa will confirm on WhatsApp.
+              Pickup outside our 3 km range may need a small delivery charge. Sonali will confirm on WhatsApp.
             </div>
           )}
         </div>
 
         <Field label="Full address" value={address} onChange={setAddress} placeholder="Flat, tower, street, landmark" multiline/>
-        <Field label="Anything for Maa? (optional)" value={note} onChange={setNote} placeholder="e.g. less sweet, gift wrap, pickup time preference" multiline/>
+        <Field label="Anything for Sonali? (optional)" value={note} onChange={setNote} placeholder="e.g. less sweet, gift wrap, pickup time preference" multiline/>
       </div>
 
       <div style={{ padding:'0 var(--px)', marginBottom:16 }}>
         <div style={{ padding:'14px 14px', border:'1px solid var(--ink)', background:'var(--paper-deep)' }}>
           <div style={{ fontFamily:'var(--font-mono)', fontSize:9, letterSpacing:'0.2em', color:'var(--accent-red)', textTransform:'uppercase', marginBottom:6 }}>Payment policy</div>
           <div style={{ fontFamily:'var(--font-serif)', fontSize:13, color:'var(--ink)', lineHeight:1.6 }}>
-            Your batch will be <strong>started only after payment is confirmed</strong> on WhatsApp. Maa shares UPI details when she confirms your slot.
+            Your batch will be <strong>started only after payment is confirmed</strong> on WhatsApp. Sonali shares UPI details when she confirms your slot.
           </div>
         </div>
       </div>
@@ -904,26 +900,37 @@ function AboutScreen({ go }) {
     <div style={{ paddingBottom:140 }}>
       <div style={{ padding:'28px var(--px) 0' }}>
         <div style={{ fontFamily:'var(--font-mono)', fontSize:10, letterSpacing:'0.24em', color:'var(--ink-soft)', textTransform:'uppercase' }}>The story</div>
-        <div style={{ fontFamily:'var(--font-display)', fontSize:44, lineHeight:0.95, color:'var(--ink)', fontWeight:500, marginTop:6, letterSpacing:'-0.02em' }}>One kitchen,<br/>forty years.</div>
+        <div style={{ fontFamily:'var(--font-display)', fontSize:44, lineHeight:0.95, color:'var(--ink)', fontWeight:500, marginTop:6, letterSpacing:'-0.02em' }}>Four decades,<br/>five cities,<br/>one kitchen.</div>
+      </div>
+
+      {/* Sonali's portrait */}
+      <div style={{ margin:'24px var(--px) 0', display:'flex', justifyContent:'center' }}>
+        <div style={{ position:'relative', width:260, flexShrink:0 }}>
+          <img src={IMG['sonali-portrait']} alt="Sonali" style={{ width:260, height:'auto', display:'block', border:'1px solid var(--ink-faint)', background:'var(--paper-deep)' }}
+            onError={e => { e.target.style.display='none'; }}
+          />
+          <div style={{ marginTop:8, textAlign:'center', fontFamily:'var(--font-hand)', fontSize:20, color:'var(--ink-soft)' }}>Sonali &mdash; the cook behind it all</div>
+        </div>
       </div>
 
       <div style={{ padding:'24px var(--px) 0' }}>
-        <div style={{ fontFamily:'var(--font-serif)', fontSize:16, lineHeight:1.65, color:'var(--ink)' }}>
-          <p style={{ margin:'0 0 14px' }}>Ghar Ka Swaad is my mother&rsquo;s kitchen.</p>
-          <p style={{ margin:'0 0 14px' }}>She grew up between Rajasthan and Bhopal, in houses where the afternoons smelled of desi ghee and the mango pickles were laid out on the roof to catch the April sun. That is the cooking she does.</p>
-          <p style={{ margin:'0 0 14px' }}>We started this because people kept asking her. Neighbours in the society, then their friends. Small boxes of besan ladoos would disappear the same afternoon. So we made a quiet little shop. Nothing fancy. No discounts, no dark patterns, no preservatives that need a chemistry lab.</p>
-          <p style={{ margin:'0 0 14px' }}>Everything is cooked in small batches, by hand, in one kitchen in Bhubaneswar. We deliver within about three kilometres, and pickup is always free. If something is not right, she&rsquo;d like to know.</p>
+        <div style={{ fontFamily:'var(--font-serif)', fontSize:16, lineHeight:1.7, color:'var(--ink)' }}>
+          <p style={{ margin:'0 0 14px' }}>Ghar Ka Swaad is Sonali&rsquo;s kitchen.</p>
+          <p style={{ margin:'0 0 14px' }}>She grew up in Madhya Pradesh, in a family that carried its recipes down from Rajasthan. The afternoons of her childhood smelled of slow-roasted besan and desi ghee. In April the roof was always full of mango pickles, cut and salted and laid out in the sun like a patient, stubborn ritual. That is the cooking she learned, and that is the cooking she still does.</p>
+          <p style={{ margin:'0 0 14px' }}>Life moved her around. From Bhopal she went to Surat with her husband, then to Bhubaneswar, then to Mumbai, then across the sea to Qatar, and eventually back home to Bhubaneswar. In each of those kitchens she learned something and let go of nothing. A Marwari hand for ghee, a Malwi instinct for spice, a Surti way with sweets, a Konkani eye for fresh fish, a Gulf sense of hospitality. Forty years of that quiet absorption sits in every jar she sends out now.</p>
+          <p style={{ margin:'0 0 14px' }}>We started Ghar Ka Swaad because people kept asking her. Neighbours in the society, then their friends, then their friends&rsquo; mothers. Small boxes of besan ladoos would disappear the same afternoon. The mango pickle jars never lasted the week. So we made a quiet little shop &mdash; no discounts, no dark patterns, no preservatives that need a chemistry lab to pronounce. Just the food, made the way she has always made it.</p>
+          <p style={{ margin:'0 0 14px' }}>Everything is cooked in small batches, by hand, in one kitchen in Bhubaneswar. Nothing is pre-stocked &mdash; your jar is started the day you order it, ready in two to four days. We deliver within about three kilometres, and pickup is always free. If something is not right, Sonali would like to know.</p>
         </div>
-        <div style={{ marginTop:18, fontFamily:'var(--font-hand)', fontSize:24, color:'var(--accent-red)', transform:'rotate(-2deg)', display:'inline-block' }}>— With love, {DATA.shop.cook}</div>
+        <div style={{ marginTop:18, fontFamily:'var(--font-hand)', fontSize:24, color:'var(--accent-red)', transform:'rotate(-2deg)', display:'inline-block' }}>— With love, Sonali</div>
       </div>
 
       <div style={{ padding:'30px var(--px) 0' }}>
         <div style={{ border:'1px solid var(--ink)', padding:'18px 18px', background:'var(--paper-deep)' }}>
           <div style={{ fontFamily:'var(--font-mono)', fontSize:10, letterSpacing:'0.22em', color:'var(--ink-soft)', textTransform:'uppercase', marginBottom:12 }}>What we promise</div>
           {[
+            ['Made fresh to order','Nothing is pre-stocked. Your order starts the day you place it, ready in 2\u20134 days.'],
             ['No preservatives','Ever. If a jar needs to keep, it keeps through salt, sugar, oil or ghee \u2014 the old ways.'],
-            ['No mass production','Made fresh every three to four days, the same week you eat it.'],
-            ['No upselling','If it\u2019s not on the shelf today, it\u2019s not available today. We\u2019ll tell you when the next batch is.'],
+            ['Small batches, by hand','One kitchen, one pair of hands, small batches. Every jar carries a batch code.'],
             ['FSSAI registered','Home kitchen, properly licensed. Number on every label.'],
           ].map(([t,d])=>(
             <div key={t} style={{ padding:'10px 0', borderTop:'1px dashed var(--ink-faint)' }}>
@@ -965,7 +972,7 @@ function FaqScreen({ go }) {
       <div style={{ padding:'0 var(--px)' }}>
         <div style={{ border:'1px solid var(--ink)', padding:'20px 18px', textAlign:'center', background:'var(--paper-deep)' }}>
           <div style={{ fontFamily:'var(--font-serif)', fontSize:17, color:'var(--ink)', fontStyle:'italic' }}>Still unsure?</div>
-          <div style={{ fontFamily:'var(--font-serif)', fontSize:13, color:'var(--ink-soft)', marginTop:6, lineHeight:1.5 }}>Message Maa directly. She reads everything.</div>
+          <div style={{ fontFamily:'var(--font-serif)', fontSize:13, color:'var(--ink-soft)', marginTop:6, lineHeight:1.5 }}>Message Sonali directly. She reads everything.</div>
           <div style={{ marginTop:14 }}>
             <BigButton tone="dark" onClick={()=>window.open(`https://wa.me/${WHATSAPP}`, '_blank')}>
               <span style={{ display:'inline-flex', alignItems:'center', gap:10 }}><WhatsAppGlyph size={16}/> Open a chat</span>
@@ -991,7 +998,7 @@ function TrackScreen({ go }) {
   const fetchOrder = async () => {
     const id = orderInput.trim().replace('#','').toUpperCase();
     if (!id) { setError('Please enter your order number.'); return; }
-    if (SHEET_ID.startsWith('REPLACE')) { setError('Order tracking is not set up yet. Please check with Maa on WhatsApp.'); return; }
+    if (SHEET_ID.startsWith('REPLACE')) { setError('Order tracking is not set up yet. Please check with Sonali on WhatsApp.'); return; }
     setError(''); setLoading(true); setOrder(null);
     try {
       const url = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&sheet=Orders`;
@@ -1125,7 +1132,7 @@ function LegalScreen({ go }) {
   const sections = [
     {
       title: 'Privacy',
-      body: `We collect your name, phone number and delivery address solely to fulfil your order. This information is sent directly to Maa via WhatsApp and logged against your order number. We do not share your details with third parties, do not send marketing messages, and do not use tracking cookies beyond basic analytics.`,
+      body: `We collect your name, phone number and delivery address solely to fulfil your order. This information is sent directly to Sonali via WhatsApp and logged against your order number. We do not share your details with third parties, do not send marketing messages, and do not use tracking cookies beyond basic analytics.`,
     },
     {
       title: 'Food & Images',
@@ -1137,7 +1144,7 @@ function LegalScreen({ go }) {
     },
     {
       title: 'Cancellations',
-      body: `Fresh items (dosa/idli batter): cancel within 2 hours of placing the order.\nKeepers and pickles: cancel up to 24 hours before your confirmed pickup slot.\n\nTo cancel, WhatsApp us. Cancellations are subject to Maa\u2019s confirmation.`,
+      body: `Everything is made fresh to order. You can cancel any time before we start cooking your batch \u2014 usually within 12 hours of placing the order for sweets and crunchies, within 24 hours for pickles.\n\nOnce the batch is on the stove, we cannot cancel or refund. To cancel, WhatsApp us. Cancellations are subject to Sonali\u2019s confirmation.`,
     },
     {
       title: 'Refunds',
